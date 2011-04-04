@@ -1,5 +1,5 @@
 execute "request percona key" do
-  command "gpg --keyserver subkeys.pgp.net --recv-keys 1C4CBDCDCD2EFD2A"
+  command "gpg --keyserver pool.sks-keyservers.net --recv-keys 1C4CBDCDCD2EFD2A"
   not_if "gpg --list-keys CD2EFD2A"
 end
 
