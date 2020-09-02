@@ -1,4 +1,4 @@
-include_recipe "percona::default"
+include_recipe 'percona::default'
 
-package "percona-server-client"
-package "libmysqlclient-dev"
+package 'percona-server-client'
+package 'libmysqlclient-dev'
