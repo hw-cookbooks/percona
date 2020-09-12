@@ -1,13 +1,13 @@
-include_recipe "percona::server"
+include_recipe 'percona::server'
 
-username = node[:percona][:username]
-password = node[:percona][:password]
-db =       node[:percona][:database]
+username = node['percona']['username']
+password = node['percona']['password']
+db =       node['percona']['database']
 
-host =     node[:percona][:hostname]
+host =     node['percona']['hostname']
 
 execute "create #{username} database user" do
-  command %Q( mysql --execute="create user '#{username}'@'#{host}'
+  command %( mysql --execute="create user '#{username}'@'#{host}'
           identified by '#{password}';
           grant all on #{db}.* to '#{username}'@'%';
           flush privileges" )
@@ -20,5 +20,5 @@ execute "create #{db} database" do
   command "mysql --execute=\"create database #{db} character set utf8\""
   not_if "mysql --silent --skip-column-names \
       --execute=\"show databases like '#{db}'\" | grep #{db}"
-  user "root"
+  user 'root'
 end

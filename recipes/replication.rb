@@ -1,7 +1,7 @@
-include_recipe "percona::slave"
+include_recipe 'percona::slave'
 
-execute "create replication database user" do
-  command %Q( mysql --execute="create user 'repl'@'127.0.0.1';
+execute 'create replication database user' do
+  command %( mysql --execute="create user 'repl'@'127.0.0.1';
           grant replication slave, replication client on *.* to 'repl'@'127.0.0.1';
           flush privileges" )
   not_if "mysql --silent --skip-column-names --database=mysql \
